@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+
+.logo {
+  font-size: 2.25rem !important;
+  font-family: 'Honk'
+}
+.App {
+  min-height: 83vh;
+  margin-bottom: 0 !important;
+}
+.footerText {
+  color: rgba(255, 255, 255, .55);
+}
