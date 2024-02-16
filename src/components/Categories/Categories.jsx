@@ -6,7 +6,7 @@ export default function Categories() {
   const [categories, setCategories] = useState([])
 
   const getCategories = () => {
-    axios.get(`https://localhost:7117/api/Categories`).then   ((response) => {
+    axios.get(`https://localhost:7117/api/Categories`).then((response) => {
       console.log(response)
       setCategories(response.data)
     })
@@ -18,11 +18,11 @@ export default function Categories() {
 
   return (
     <section className="categories">
-      <article className="bg-warning p-5">
+      <article className="p-2">
         <h1 className="text-center">Categories</h1>
       </article>
-      <div className="container p-2">
-        <table className="table table-dark bg-info my-5 text-center">
+      <article className="container rounded-4">
+        <table className="table rounded-4 table-dark bg-info my-5 text-center">
           <thead>
             <tr>
               <th><strong>Name</strong></th>
@@ -35,7 +35,7 @@ export default function Categories() {
           )}
           </tbody>
         </table>
-      </div>
+      </article>
     </section>
   )
 }
