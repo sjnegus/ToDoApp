@@ -1,10 +1,12 @@
 export default function SingleToDo({ todo }) {
-    const { name, categoryName, done} = todo
+    const { name, category, done} = todo
+    console.log(todo)
   return (
     <tr>
-        <td>{name}</td>
-        <td>{categoryName}</td>
         <td>{done}</td>
+        <td>{name}</td>
+        <td>{category ? category.categoryName : 'No Category'}</td>
+        <td></td>
     </tr>
   )
 }

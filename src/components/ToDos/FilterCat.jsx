@@ -1,9 +1,10 @@
 // This component will house a button for each category, as well as an "All" button for removing filtering in Resources.jsx
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { ImEye, ImEyeBlocked } from 'react-icons/im'
 
 // Below, we destructure the setFilter function off of the props object
-export default function FilterCat({ setFilter }) {
+export default function FilterCat({ setFilter, showDone, setShowDone }) {
   // We need the categories from the API to map the buttons, so store them in a hook!
   const [categories, setCategories] = useState([])
 
@@ -25,6 +26,15 @@ export default function FilterCat({ setFilter }) {
             {c.categoryName}
           </button>    
         )}
+
+        {!showDone ?
+          <button className="btn btn-success m-1" onClick={() => setShowDone(true)}>
+            Show Complete &ensp; <ImEye />
+          </button>  :
+          <button className="btn btn warning m-1" onClick={() => setShowDone(false)}>
+            Hide Complete &ensp; <ImEyeBlocked/>
+          </button>
+      }
      </div>
     )
 }
