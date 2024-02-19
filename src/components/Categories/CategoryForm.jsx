@@ -9,12 +9,10 @@ export default function CategoryForm({
   getCategories,
 }) {
   const { categoryName, categoryDescription, categoryId } = category || ""
-
   const handleSubmit = (values) => {
     console.log(values)
     if (!category) {
       const catToCreate = values
-
       axios
         .post(`https://localhost:7117/api/Categories`, catToCreate)
         .then(() => {
@@ -25,9 +23,8 @@ export default function CategoryForm({
       const catToEdit = {
         categoryId: categoryId,
         categoryName: values.categoryName,
-        categoryDescription: values.categoryDescription,
+        categoryDescription: values.categoryDescription
       }
-
       axios
         .put(`https://localhost:7117/api/Categories/${categoryId}`, catToEdit)
         .then(() => {
@@ -41,7 +38,7 @@ export default function CategoryForm({
       <Formik
         initialValues={{
           categoryName: category ? categoryName : "",
-          categoryDescription: category ? categoryDescription : "",
+          categoryDescription: category ? categoryDescription : ""
         }}
         validationSchema={catSchema}
         onSubmit={(values) => handleSubmit(values)}

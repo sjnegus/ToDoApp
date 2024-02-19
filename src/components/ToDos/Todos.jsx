@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { useAuth } from "../../contexts/AuthContext"
+// import { useAuth } from "../../contexts/AuthContext"
 import { Container, Table } from "react-bootstrap"
 import SingleToDo from "./SingleToDo"
 import FilterCat from "./FilterCat"
+import CreateToDo from "./CreateToDo"
 
 export default function Todos() {
   const [toDos, setToDos] = useState([])
   const [filter, setFilter] = useState(0)
   const [showDone, setShowDone] = useState(false)
+  const [showCreate, setShowCreate] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState(0)
 
-  const { currentUser } = useAuth()
+  // const { currentUser } = useAuth()
 
   const getToDos = () => {
     axios.get(`https://localhost:7117/api/ToDos`).then((response) => {
@@ -20,13 +23,40 @@ export default function Todos() {
   }
   useEffect(() => {
     getToDos()
-  }, [])
+  }, [currentCategory])
+
+    // Function to filter todos based on the current category
+    const filterTodosByCategory = () => {
+      if (currentCategory === 0) {
+        return toDos
+      } else {
+        return toDos.filter(todo => todo.category === currentCategory)
+      }
+    }
+
+    // Function to filter incomplete items
+    const getIncompleteTodosCount = () => {
+      return filterTodosByCategory().filter(todo => !todo.done).length
+    };
 
   return (
     <section className="categories">
       <article className="p-2">
         <h1 className="text-center">ToDos</h1>
       </article>
+
+      {/* BEGIN CREATE UI */}
+      <div className="bg-dark p-2 mb-3 text-center">
+        <button onClick={() => setShowCreate(!showCreate)} className="btn btn-warning">
+          {!showCreate ? 'Add To Do' : 'Cancel'}
+        </button>
+        <div className="createContainer">
+          {showCreate &&
+            <CreateToDo setShowCreate={setShowCreate} getToDos={getToDos} />
+          }
+        </div>
+      </div>
+      {/* END CREATE UI */}
 
       <FilterCat
         showDone={showDone}
@@ -41,9 +71,9 @@ export default function Todos() {
               <th>Done?</th>
               <th>To Do</th>
               <th>Category</th>
-              {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && (
+              {/* {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL &&  */}
                 <th>Actions</th>
-              )}
+              {/* } */}
             </tr>
           </thead>
           <tbody>
@@ -110,6 +140,11 @@ export default function Todos() {
               )}
           </>
         )}
+        <div className="text-center m-2 py-2">
+        <p>
+        You have {getIncompleteTodosCount()} To Do items in {currentCategory}, you got this!
+      </p>
+        </div>
       </Container>
     </section>
   )
