@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import SingleCategory from "./SingleCategory"
-// import { useAuth } from "../../contexts/AuthContext"
+import { useAuth } from "../../contexts/AuthContext"
 import CreateCategory from "./CreateCategory"
 
 export default function Categories() {
   const [categories, setCategories] = useState([])
 
   // Hooks for create functionality
-  // const { currentUser } = useAuth()
+  const { currentUser } = useAuth()
   const [showCreate, setShowCreate] = useState(false)
 
   const getCategories = () => {
@@ -28,8 +28,8 @@ export default function Categories() {
         <h1 className="text-center">Categories</h1>
       </article>
       {/* BEGIN CREATE UI */}
-      {/* {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && */}
-          <div className="bg-dark p-2 mb-3 text-center">
+      {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL &&
+          <div id="create-bg" className=" p-2 mb-3  text-center">
             {showCreate ? 
               <>
               <button onClick={() => setShowCreate(false)} className="btn btn-warning">
@@ -38,13 +38,13 @@ export default function Categories() {
               <CreateCategory setShowCreate={setShowCreate} getCategories={getCategories} />
               </> :
               <>
-              <button onClick={() => setShowCreate(true)} className="btn btn-info">
+              <button onClick={() => setShowCreate(true)} className="btn btn-warning">
                 Create Category
               </button>
               </>
             }
           </div>          
-        {/* } */}
+        }
       {/* END CREATE UI */}
 
       <article className="container">
@@ -53,15 +53,15 @@ export default function Categories() {
           <tr>
               <th>Name</th>
               <th>Description</th>
-              {/* {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && */}
+              {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL &&
                  <th>Actions</th>
-              {/* } */}
+              }
             </tr>
           </thead>
           <tbody>
             {/* READ UI BEGINS */}
             {categories.map((c) => (
-              <SingleCategory key={c.categoryId} category={c} />
+              <SingleCategory key={c.categoryId} getCategories={getCategories} category={c} />
             ))}
             {/* READ UI ENDS */}
           </tbody>

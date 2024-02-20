@@ -7,6 +7,7 @@ import Todos from "./components/ToDos/Todos"
 import Categories from "./components/Categories/Categories"
 import AuthProvider from "./contexts/AuthContext"
 import Footer from "./components/Footer"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <Router>
           <Navigation />
           <Routes>
-            <Route path="/" element={<Todos />} />
-            <Route path="/todos" element={<Todos />} />
-            <Route path="/categories" element={<Categories />} />
+            
+            <Route path="/" element={<ProtectedRoute><Todos /></ProtectedRoute>} />
+            <Route path="/todos" element={<ProtectedRoute><Todos /></ProtectedRoute>} />
+            <Route path="/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

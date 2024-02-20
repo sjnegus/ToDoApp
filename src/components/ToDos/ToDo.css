@@ -1,0 +1,8 @@
+div#create-bg {
+    background: radial-gradient(circle at center, rgb(90,32,234), transparent);
+       
+  }
+
+  div.task-count#taskCount {
+    margin: 3em;
+  }

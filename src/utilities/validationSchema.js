@@ -9,7 +9,7 @@ const catSchema = Yup.object().shape({
 
 const toDoSchema = Yup.object().shape({
     name: Yup.string().max(100, 'Max 100 characters').required(),
-    done: false,
+    // done: false,
     categoryId: Yup.number().required()
 })
 

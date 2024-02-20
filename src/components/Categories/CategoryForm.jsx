@@ -10,7 +10,7 @@ export default function CategoryForm({
 }) {
   const { categoryName, categoryDescription, categoryId } = category || ""
   const handleSubmit = (values) => {
-    console.log(values)
+    // console.log(values)
     if (!category) {
       const catToCreate = values
       axios
