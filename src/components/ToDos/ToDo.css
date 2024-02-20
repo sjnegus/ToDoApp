@@ -1,6 +1,7 @@
 div#create-bg {
-    background: radial-gradient(circle at center, rgb(90,32,234), transparent);
-       
+    background: radial-gradient(circle at center, rgb(var(--bs-dark-rgb)), transparent);
+    margin-left: 15%;
+    margin-right: 15%;
   }
 
   div.task-count#taskCount {

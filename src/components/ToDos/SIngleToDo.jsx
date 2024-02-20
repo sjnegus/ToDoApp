@@ -1,8 +1,8 @@
-import React from "react"
+// import React from "react"
 import { useState } from "react"
 import { FaEdit, FaTrashAlt } from "react-icons/fa"
 import axios from "axios"
-import { useAuth } from "../../contexts/AuthContext"
+// import { useAuth } from "../../contexts/AuthContext"
 import EditToDo from "./EditToDo"
 
 export default function SingleToDo({ todo, getToDos }) {
@@ -10,7 +10,7 @@ export default function SingleToDo({ todo, getToDos }) {
 
   const [showEdit, setShowEdit] = useState(false)
 
-  const currentUser = useAuth()
+  // const currentUser = useAuth()
 
   const completeTask = () => {
     let updatedToDo = {

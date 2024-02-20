@@ -64,12 +64,12 @@ export default function ToDoForm({
         <Form id="todoForm">
           <div className="form-group m-3">
             <Field
-              name="todoName"
+              name="name"
               className="form-control"
               placeholder="Add New To Do"
             />
-            {errors.todoName && touched.todoName && (
-              <div className="text-danger">{errors.todoName}</div>
+            {errors.name && touched.name && (
+              <div className="text-danger">{errors.name}</div>
             )}
           </div>
           <div className="form-group m-3">
@@ -85,7 +85,7 @@ export default function ToDoForm({
             </Field>
           </div>
           <div className="form-group m-3">
-            <button className="btn btn-success" type="submit">
+            <button className="btn btn-success" type="submit" >
               Update List
             </button>
           </div>
