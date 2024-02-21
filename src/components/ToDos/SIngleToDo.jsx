@@ -30,6 +30,7 @@ export default function SingleToDo({ todo, getToDos }) {
   const deleteToDo = (id) => {
     if (window.confirm(`Are you sure you want to delete ${name}?`)) {
       axios.delete(`https://localhost:7117/api/ToDos/${id}`)
+      .then(() => getToDos())
     }
   }
 
