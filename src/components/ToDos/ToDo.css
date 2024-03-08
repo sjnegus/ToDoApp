@@ -4,6 +4,27 @@ div#create-bg {
     margin-right: 15%;
   }
 
-  div.task-count#taskCount {
-    margin: 3em;
-  }
+.categories {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-container {
+  margin-bottom: 20px; /* Adjust this value as needed */
+}
+
+.task-count {
+  color: rgb(229, 46, 171);
+  background-color: rgb(var(--bs-dark-rgb));
+  border: 1px solid rgb(229, 46, 171);
+  border-radius: 0.25rem;
+  padding: 10px;
+}
+
+button#editLink {
+  background-color: rgb(254, 223, 63);
+}
+
+button#deleteLink {
+  background-color: rgb(254, 223, 63);
+}

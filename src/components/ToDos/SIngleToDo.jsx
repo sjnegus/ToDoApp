@@ -12,20 +12,24 @@ export default function SingleToDo({ todo, getToDos }) {
 
   // const currentUser = useAuth()
 
-  const completeTask = () => {
-    let updatedToDo = {
-      toDoId: toDoId,
-      name: name,
-      category: category,
-      done: !done,
-    }
-    axios
-      .put(`https://localhost:7117/api/ToDos/${toDoId}`, updatedToDo)
-      .then((response) => {
-        console.log(response)
-        getToDos()
-      })
-  }
+const completeTask = () => {
+  let updatedToDo = {
+    toDoId: toDoId,
+    name: name,
+    category: category, // Include the category here
+    done: !done,
+  };
+  axios
+    .put(`https://localhost:7117/api/ToDos/${toDoId}`, updatedToDo)
+    .then((response) => {
+      console.log(response);
+      getToDos();
+    })
+    .catch((error) => {
+      console.error("Error completing task:", error);
+    });
+};
+
 
   const deleteToDo = (id) => {
     if (window.confirm(`Are you sure you want to delete ${name}?`)) {

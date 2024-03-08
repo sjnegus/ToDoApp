@@ -5,14 +5,14 @@ import { Container, Table } from "react-bootstrap"
 import SingleToDo from "./SingleToDo"
 import FilterCat from "./FilterCat"
 import CreateToDo from "./CreateToDo"
-import './ToDo.css'
+import "./ToDo.css"
 
 export default function Todos() {
   const [toDos, setToDos] = useState([])
   const [filter, setFilter] = useState(0)
   const [showDone, setShowDone] = useState(false)
-  const [showCreate, setShowCreate] = useState(false);
-  const [currentCategory, setCurrentCategory] = useState('all categories')
+  const [showCreate, setShowCreate] = useState(false)
+  const [currentCategory, setCurrentCategory] = useState("all categories")
 
   const { currentUser } = useAuth()
 
@@ -27,7 +27,7 @@ export default function Todos() {
   }, [])
 
   return (
-    <section className="categories">
+    <section className="categories flex-column">
       <article className="p-2">
         <h1 className="text-center">ToDos</h1>
       </article>
@@ -50,18 +50,21 @@ export default function Todos() {
             }
           </div>          
         } */}
-              {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL &&
+      {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && (
         <div id="create-bg" className=" p-2 mb-3 text-center">
-          <button onClick={() => setShowCreate(!showCreate)} className="btn btn-warning">
-            {!showCreate ? 'Add New Task' : 'Cancel'}
+          <button
+            onClick={() => setShowCreate(!showCreate)}
+            className="btn btn-warning"
+          >
+            {!showCreate ? "Add New Task" : "Cancel"}
           </button>
           <div className="createContainer">
-            {showCreate && 
+            {showCreate && (
               <CreateToDo setShowCreate={setShowCreate} getToDos={getToDos} />
-            }
+            )}
           </div>
         </div>
-      }
+      )}
       {/* END CREATE UI */}
 
       <FilterCat
@@ -71,16 +74,16 @@ export default function Todos() {
         setCurrentCategory={setCurrentCategory}
       />
 
-      <Container className="pt-4">
+      <Container className="table-container pt-4">
         <Table bordered hover variant="dark">
           <thead>
             <tr>
               <th>Done?</th>
               <th>To Do</th>
               <th>Category</th>
-              {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && 
+              {currentUser.email === import.meta.env.VITE_ADMIN_EMAIL && (
                 <th>Actions</th>
-              }
+              )}
             </tr>
           </thead>
           <tbody>
@@ -127,6 +130,7 @@ export default function Todos() {
             )}
           </tbody>
         </Table>
+        
         {!showDone ? (
           <>
             {filter !== 0 &&
@@ -147,12 +151,17 @@ export default function Todos() {
               )}
           </>
         )}
-        <div id='taskCount' className="task-count text-center m-2 py-2">
-        <h4>
-        You have {filter !== 0 ? toDos.filter((x) => x.categoryId === filter).length : toDos.length} To Do items in {currentCategory}, you got this!
-      </h4>
+</Container>
+        <div id="taskCount" className="task-count text-center m-2 py-2">
+          <h4>
+            You have{" "}
+            {filter !== 0
+              ? toDos.filter((x) => x.categoryId === filter).length
+              : toDos.length}{" "}
+            To Do items in {currentCategory}, you got this!
+          </h4>
         </div>
-      </Container>
+      
     </section>
   )
 }
